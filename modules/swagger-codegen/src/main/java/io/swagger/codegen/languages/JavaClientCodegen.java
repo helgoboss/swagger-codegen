@@ -237,6 +237,8 @@ public class JavaClientCodegen extends DefaultCodegen implements CodegenConfig {
 
     @Override
     public String toModelName(String name) {
+        name = sanitizeName(name);
+
         // model name cannot use reserved keyword, e.g. return
         if (reservedWords.contains(name)) {
             throw new RuntimeException(name + " (reserved word) cannot be used as a model name");
@@ -338,6 +340,8 @@ public class JavaClientCodegen extends DefaultCodegen implements CodegenConfig {
                     continue;
                 List<String> values = (List<String>) allowableValues.get("values");
                 // put "enumVars" map into `allowableValues", including `name` and `value`
+                if (values == null)
+                    continue;
                 List<Map<String, String>> enumVars = new ArrayList<Map<String, String>>();
                 for (String value : values) {
                     Map<String, String> enumVar = new HashMap<String, String>();
