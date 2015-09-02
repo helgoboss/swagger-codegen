@@ -1,0 +1,1 @@
+java -XX:MaxPermSize=256M -Xmx1024M -DloggerPath=conf/log4j.properties -jar .\modules\swagger-codegen-cli\target\swagger-codegen-cli.jar generate -i http://localhost/api/api-docs -l CsharpDotNet2 -o target
